@@ -1,7 +1,7 @@
 package com.dyspersja;
 
 public class UserInputParser {
-    public DatabaseOperations parse(String userInput) {
+    public DatabaseOperations parseDatabaseOperation(String userInput) {
         return switch (userInput.toLowerCase()) {
             case "select", "s" -> DatabaseOperations.SELECT;
             case "update", "u" -> DatabaseOperations.UPDATE;
@@ -9,5 +9,13 @@ public class UserInputParser {
             case "insert", "i" -> DatabaseOperations.INSERT;
             default -> throw new RuntimeException();
         };
+    }
+
+    public boolean parseHelpCommand(String userInput) {
+        return userInput.equals("help");
+    }
+
+    public boolean parseExitCommand(String userInput) {
+        return userInput.equals("exit");
     }
 }
