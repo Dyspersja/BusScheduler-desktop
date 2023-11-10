@@ -1,8 +1,12 @@
 package com.dyspersja;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnection {
 
@@ -11,15 +15,20 @@ public class DatabaseConnection {
 
     private DatabaseConnection() {
         try {
-            String url = "jdbc:mysql://localhost:55555/busapp";
-            String user = "root";
-            String password = "";
+            Properties properties = new Properties();
+            properties.load(new FileInputStream("application.properties"));
+
+            String url = properties.getProperty("database.url");
+            String user = properties.getProperty("database.user");
+            String password = properties.getProperty("database.password");
 
             this.connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());
             System.out.println("SQLState: " + e.getSQLState());
             System.out.println("VendorError: " + e.getErrorCode());
+        } catch (IOException e) {
+            System.out.println("File not found: " + e.getMessage());
         }
     }
 
