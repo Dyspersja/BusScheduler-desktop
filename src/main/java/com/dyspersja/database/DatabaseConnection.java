@@ -16,10 +16,10 @@ public class DatabaseConnection {
             var propertiesLoader = PropertiesLoader.getInstance();
 
             String url = propertiesLoader.getDatabaseUrl();
-            String user = propertiesLoader.getDatabaseUsername();
+            String username = propertiesLoader.getDatabaseUsername();
             String password = propertiesLoader.getDatabasePassword();
 
-            this.connection = DriverManager.getConnection(url, user, password);
+            this.connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());
             System.out.println("SQLState: " + e.getSQLState());
