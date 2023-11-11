@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertiesFileReader {
+
     private final String propertiesFileName = "config.properties";
 
     private final Properties properties;
