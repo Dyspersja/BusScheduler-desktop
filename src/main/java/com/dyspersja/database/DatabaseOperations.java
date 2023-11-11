@@ -1,5 +1,7 @@
 package com.dyspersja.database;
 
+import com.dyspersja.console.ConsoleCommands;
+
 public enum DatabaseOperations {
 
     SELECT("select", "s"),
@@ -21,5 +23,14 @@ public enum DatabaseOperations {
 
     public String getShortForm() {
         return shortForm;
+    }
+
+    public ConsoleCommands toConsoleCommand() {
+        return switch (this) {
+            case SELECT -> ConsoleCommands.SELECT;
+            case UPDATE -> ConsoleCommands.UPDATE;
+            case DELETE -> ConsoleCommands.DELETE;
+            case INSERT -> ConsoleCommands.INSERT;
+        };
     }
 }

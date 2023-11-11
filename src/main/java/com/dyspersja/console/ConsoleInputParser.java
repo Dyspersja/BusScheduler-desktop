@@ -2,23 +2,33 @@ package com.dyspersja.console;
 
 import com.dyspersja.database.DatabaseOperations;
 
+import java.util.Optional;
+
 public class ConsoleInputParser {
 
-    public DatabaseOperations parseDatabaseOperation(String userInput) {
+    public ConsoleCommands parseUserInput(String userInput) {
+        if (parseExitCommand(userInput)) return ConsoleCommands.EXIT;
+        if (parseHelpCommand(userInput)) return ConsoleCommands.HELP;
+        return parseDatabaseOperation(userInput)
+                .map(DatabaseOperations::toConsoleCommand)
+                .orElse(ConsoleCommands.INVALID_COMMAND);
+    }
+
+    private Optional<DatabaseOperations> parseDatabaseOperation(String userInput) {
         return switch (userInput.toLowerCase()) {
-            case "select", "s" -> DatabaseOperations.SELECT;
-            case "update", "u" -> DatabaseOperations.UPDATE;
-            case "delete", "d" -> DatabaseOperations.DELETE;
-            case "insert", "i" -> DatabaseOperations.INSERT;
-            default -> throw new RuntimeException();
+            case "select", "s" -> Optional.of(DatabaseOperations.SELECT);
+            case "update", "u" -> Optional.of(DatabaseOperations.UPDATE);
+            case "delete", "d" -> Optional.of(DatabaseOperations.DELETE);
+            case "insert", "i" -> Optional.of(DatabaseOperations.INSERT);
+            default -> Optional.empty();
         };
     }
 
-    public boolean parseHelpCommand(String userInput) {
-        return userInput.equals("help");
+    private boolean parseHelpCommand(String userInput) {
+        return userInput.equalsIgnoreCase("help");
     }
 
-    public boolean parseExitCommand(String userInput) {
-        return userInput.equals("exit");
+    private boolean parseExitCommand(String userInput) {
+        return userInput.equalsIgnoreCase("exit");
     }
 }
