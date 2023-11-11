@@ -15,13 +15,13 @@ public class ConsoleInputParser {
     }
 
     private Optional<DatabaseOperations> parseDatabaseOperation(String userInput) {
-        return switch (userInput.toLowerCase()) {
-            case "select", "s" -> Optional.of(DatabaseOperations.SELECT);
-            case "update", "u" -> Optional.of(DatabaseOperations.UPDATE);
-            case "delete", "d" -> Optional.of(DatabaseOperations.DELETE);
-            case "insert", "i" -> Optional.of(DatabaseOperations.INSERT);
-            default -> Optional.empty();
-        };
+        for (DatabaseOperations operation : DatabaseOperations.values()) {
+            if (operation.getLongForm().equalsIgnoreCase(userInput) ||
+                    operation.getShortForm().equalsIgnoreCase(userInput)) {
+                return Optional.of(operation);
+            }
+        }
+        return Optional.empty();
     }
 
     private boolean parseHelpCommand(String userInput) {
