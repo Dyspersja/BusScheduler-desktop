@@ -7,7 +7,7 @@ public class ConsoleMessageWriter {
             Welcome to Bus Transport Management application
             
             Enter name of the operation you want to perform
-            type 'help' for a brief introduction and list of available commands.\s
+            type 'help' for a brief introduction and list of available commands.
             type 'exit' to close""";
 
         System.out.println(welcomeMessage);
