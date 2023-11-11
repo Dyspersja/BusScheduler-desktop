@@ -1,8 +1,9 @@
-package com.dyspersja;
+package com.dyspersja.console;
 
 import com.dyspersja.database.DatabaseOperations;
 
-public class UserInputParser {
+public class ConsoleInputParser {
+
     public DatabaseOperations parseDatabaseOperation(String userInput) {
         return switch (userInput.toLowerCase()) {
             case "select", "s" -> DatabaseOperations.SELECT;

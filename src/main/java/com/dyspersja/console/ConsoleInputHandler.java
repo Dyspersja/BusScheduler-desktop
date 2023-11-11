@@ -1,6 +1,5 @@
-package com.dyspersja;
+package com.dyspersja.console;
 
-import com.dyspersja.console.ConsoleMessageWriter;
 import com.dyspersja.database.DatabaseOperations;
 
 import java.util.Scanner;
@@ -16,7 +15,7 @@ public class ConsoleInputHandler {
     private void runLoop() {
         boolean isRunning = true;
         Scanner input = new Scanner(System.in);
-        UserInputParser parser = new UserInputParser();
+        ConsoleInputParser parser = new ConsoleInputParser();
 
         while(isRunning) {
             String userInput = input.nextLine();

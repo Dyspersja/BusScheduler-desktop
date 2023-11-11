@@ -1,5 +1,6 @@
 package com.dyspersja;
 
+import com.dyspersja.console.ConsoleInputHandler;
 import com.dyspersja.properties.PropertiesLoader;
 
 public class Main {
