@@ -28,4 +28,13 @@ public class ConsoleMessageWriter {
 
         System.out.println(helpMessage);
     }
+
+    public void printInvalidCommandMessage(String userInput) {
+        System.out.println("Invalid command: " + userInput);
+        System.out.println("Use the 'help' command to see available commands");
+    }
+
+    public void printExitMessage() {
+        System.out.println("Exiting the program. Goodbye!");
+    }
 }

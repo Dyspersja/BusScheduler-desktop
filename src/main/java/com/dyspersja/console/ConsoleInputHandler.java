@@ -15,7 +15,22 @@ public class ConsoleInputHandler {
         while(isRunning) {
             String userInput = input.nextLine();
 
-            ConsoleCommands command = parser.parseUserInput(userInput);
+            switch(parser.parseUserInput(userInput)) {
+                case INVALID_COMMAND ->
+                        messageWriter.printInvalidCommandMessage(userInput);
+
+                case HELP ->
+                        messageWriter.printHelpMessage();
+                case EXIT -> {
+                    messageWriter.printExitMessage();
+                    isRunning = false;
+                }
+
+                case INSERT -> System.out.println();
+                case DELETE -> System.out.println();
+                case UPDATE -> System.out.println();
+                case SELECT -> System.out.println();
+            }
         }
     }
 }
