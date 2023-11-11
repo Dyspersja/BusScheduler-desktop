@@ -1,5 +1,7 @@
 package com.dyspersja;
 
+import com.dyspersja.database.DatabaseOperations;
+
 import java.util.Scanner;
 
 public class ConsoleInputHandler {

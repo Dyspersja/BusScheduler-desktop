@@ -1,4 +1,4 @@
-package com.dyspersja;
+package com.dyspersja.database;
 
 public enum DatabaseOperations {
 

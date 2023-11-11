@@ -1,4 +1,4 @@
-package com.dyspersja;
+package com.dyspersja.database;
 
 import com.dyspersja.properties.PropertiesLoader;
 

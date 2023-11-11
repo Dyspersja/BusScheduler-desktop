@@ -1,5 +1,7 @@
 package com.dyspersja;
 
+import com.dyspersja.database.DatabaseOperations;
+
 public class UserInputParser {
     public DatabaseOperations parseDatabaseOperation(String userInput) {
         return switch (userInput.toLowerCase()) {
