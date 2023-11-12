@@ -1,7 +1,9 @@
 package com.dyspersja.database;
 
 import com.dyspersja.console.ConsoleCommands;
+import lombok.Getter;
 
+@Getter
 public enum DatabaseOperations {
 
     SELECT("select", "s"),
@@ -15,14 +17,6 @@ public enum DatabaseOperations {
     DatabaseOperations(String longForm, String shortForm) {
         this.longForm = longForm;
         this.shortForm = shortForm;
-    }
-
-    public String getLongForm() {
-        return longForm;
-    }
-
-    public String getShortForm() {
-        return shortForm;
     }
 
     public ConsoleCommands toConsoleCommand() {

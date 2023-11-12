@@ -2,7 +2,9 @@ package com.dyspersja.properties;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import lombok.Getter;
 
+@Getter
 public class PropertiesArgumentParser {
 
     @Parameter(names = "--url", description = "Database URL")
@@ -17,17 +19,5 @@ public class PropertiesArgumentParser {
                 .addObject(this)
                 .build()
                 .parse(args);
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
