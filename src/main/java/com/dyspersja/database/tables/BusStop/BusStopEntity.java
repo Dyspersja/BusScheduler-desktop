@@ -1,4 +1,4 @@
-package com.dyspersja.entities;
+package com.dyspersja.database.tables.BusStop;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BusStop {
+public class BusStopEntity {
 
     private int id;
     private String number;
