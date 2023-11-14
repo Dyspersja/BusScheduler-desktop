@@ -1,4 +1,6 @@
 package com.dyspersja.database.tables.BusStop;
 
-public class BusStopService {
+import com.dyspersja.database.tables.TableService;
+
+public class BusStopService implements TableService {
 }
