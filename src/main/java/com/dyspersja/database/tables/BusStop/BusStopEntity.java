@@ -10,7 +10,7 @@ import lombok.*;
 public class BusStopEntity {
 
     private int id;
-    private String number;
+    private int number;
     private String city;
     private String street;
     private double latitude;
