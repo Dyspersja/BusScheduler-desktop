@@ -93,8 +93,8 @@ public class BusStopRepository implements TableRepository<BusStopEntity> {
                 "VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-            statement.setInt(1,entity.getNumber());
-            statement.setString(2,entity.getCity());
+            statement.setInt(1, entity.getNumber());
+            statement.setString(2, entity.getCity());
             statement.setString(3, entity.getStreet());
             statement.setDouble(4, entity.getLatitude());
             statement.setDouble(5, entity.getLongitude());
