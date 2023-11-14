@@ -4,13 +4,22 @@ import java.util.Scanner;
 
 public class ConsoleInputHandler {
 
-    public void start() {
-        var messageWriter = new ConsoleMessageWriter();
-        var parser = new ConsoleInputParser();
-        var input = new Scanner(System.in);
-        boolean isRunning = true;
+    private ConsoleMessageWriter messageWriter;
+    private ConsoleInputParser parser;
+    private Scanner input;
+
+    public void initialize() {
+        this.messageWriter = new ConsoleMessageWriter();
+        this.parser = new ConsoleInputParser();
+        this.input = new Scanner(System.in);
 
         messageWriter.printWelcomeMessage();
+
+        start();
+    }
+
+    private void start() {
+        boolean isRunning = true;
 
         while(isRunning) {
             String userInput = input.nextLine();
@@ -32,6 +41,7 @@ public class ConsoleInputHandler {
                 case SELECT -> goToSelectOperation();
             }
         }
+        input.close();
     }
 
     private void goToInsertOperation() {

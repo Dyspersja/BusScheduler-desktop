@@ -8,6 +8,6 @@ public class Main {
         PropertiesLoader.createInstance(args);
 
         var inputHandler = new ConsoleInputHandler();
-        inputHandler.start();
+        inputHandler.initialize();
     }
 }
