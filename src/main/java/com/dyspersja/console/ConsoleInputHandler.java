@@ -26,11 +26,27 @@ public class ConsoleInputHandler {
                     isRunning = false;
                 }
 
-                case INSERT -> System.out.println();
-                case DELETE -> System.out.println();
-                case UPDATE -> System.out.println();
-                case SELECT -> System.out.println();
+                case INSERT -> goToInsertOperation();
+                case DELETE -> goToDeleteOperation();
+                case UPDATE -> goToUpdateOperation();
+                case SELECT -> goToSelectOperation();
             }
         }
+    }
+
+    private void goToInsertOperation() {
+
+    }
+
+    private void goToDeleteOperation() {
+
+    }
+
+    private void goToUpdateOperation() {
+
+    }
+
+    private void goToSelectOperation() {
+
     }
 }
