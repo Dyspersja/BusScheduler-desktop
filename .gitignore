@@ -9,3 +9,6 @@ target/
 *.iws
 *.iml
 *.ipr
+
+# Generated properties file
+config.properties
