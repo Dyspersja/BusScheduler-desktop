@@ -25,12 +25,12 @@ public class ConsoleInputHandler {
     }
 
     private void start() {
-        boolean isRunning = true;
+        var insert = new InsertOperation(input, messageWriter);
+        var delete = new DeleteOperation(input, messageWriter);
+        var update = new UpdateOperation(input, messageWriter);
+        var select = new SelectOperation(input, messageWriter);
 
-        var insert = new InsertOperation(input);
-        var delete = new DeleteOperation(input);
-        var update = new UpdateOperation(input);
-        var select = new SelectOperation(input);
+        boolean isRunning = true;
 
         while(isRunning) {
             String userInput = input.nextLine();

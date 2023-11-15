@@ -1,12 +1,16 @@
 package com.dyspersja.console.operations;
 
+import com.dyspersja.console.ConsoleMessageWriter;
+
 import java.util.Scanner;
 
 public class DeleteOperation {
 
-    private Scanner input;
+    private final ConsoleMessageWriter messageWriter;
+    private final Scanner input;
 
-    public DeleteOperation(Scanner input) {
+    public DeleteOperation(Scanner input, ConsoleMessageWriter messageWriter) {
+        this.messageWriter = messageWriter;
         this.input = input;
     }
 
