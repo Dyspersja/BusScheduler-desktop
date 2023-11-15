@@ -13,15 +13,17 @@ public class ConsoleInputHandler {
     private ConsoleInputParser parser;
     private Scanner input;
 
+    private boolean isRunning;
+
     public void initialize() {
         this.messageWriter = new ConsoleMessageWriter();
         this.parser = new ConsoleInputParser();
         this.input = new Scanner(System.in);
 
         messageWriter.printWelcomeMessage();
+        isRunning = true;
 
         start();
-        close();
     }
 
     private void start() {
@@ -30,21 +32,14 @@ public class ConsoleInputHandler {
         var update = new UpdateOperation(input, messageWriter);
         var select = new SelectOperation(input, messageWriter);
 
-        boolean isRunning = true;
-
         while(isRunning) {
             String userInput = input.nextLine();
 
             switch(parser.parseUserInput(userInput)) {
-                case INVALID_COMMAND ->
-                        messageWriter.printInvalidCommandMessage(userInput);
+                case INVALID_COMMAND -> printInvalidCommandMessage(userInput);
 
-                case HELP ->
-                        messageWriter.printHelpMessage();
-                case EXIT -> {
-                    messageWriter.printExitMessage();
-                    isRunning = false;
-                }
+                case HELP -> printHelpMessage();
+                case EXIT -> exit();
 
                 case INSERT -> insert.start();
                 case DELETE -> delete.start();
@@ -54,7 +49,18 @@ public class ConsoleInputHandler {
         }
     }
 
-    private void close() {
+    private void printInvalidCommandMessage(String userInput) {
+        messageWriter.printInvalidCommandMessage(userInput);
+    }
+
+    private void printHelpMessage() {
+        messageWriter.printHelpMessage();
+    }
+
+    private void exit() {
+        messageWriter.printExitMessage();
+        isRunning = false;
+
         input.close();
     }
 }
