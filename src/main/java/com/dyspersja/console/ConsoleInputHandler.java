@@ -27,7 +27,7 @@ public class ConsoleInputHandler {
     }
 
     private void start() {
-        var insert = new InsertOperation(input, messageWriter);
+        var insert = new InsertOperation(input);
         var delete = new DeleteOperation(input, messageWriter);
         var update = new UpdateOperation(input, messageWriter);
         var select = new SelectOperation();

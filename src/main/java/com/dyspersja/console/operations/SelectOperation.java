@@ -1,12 +1,10 @@
 package com.dyspersja.console.operations;
 
-import com.dyspersja.console.ConsoleMessageWriter;
 import com.dyspersja.database.tables.BusStop.BusStopColumns;
 import com.dyspersja.database.tables.BusStop.BusStopEntity;
 import com.dyspersja.database.tables.BusStop.BusStopService;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class SelectOperation {
 
@@ -75,7 +73,7 @@ public class SelectOperation {
 
     private void printHeaderRow(int[] columnWidths, BusStopColumns[] headers) {
         for (int i = 0; i < columnWidths.length; i++)
-            System.out.printf("| %"+ columnWidths[i] + "s ", headers[i].getColumnName());
+            System.out.printf("| %-"+ columnWidths[i] + "s ", headers[i].getColumnName());
 
         System.out.print("|");
         System.out.println();
