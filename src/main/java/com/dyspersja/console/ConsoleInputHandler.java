@@ -30,7 +30,7 @@ public class ConsoleInputHandler {
         var insert = new InsertOperation(input, messageWriter);
         var delete = new DeleteOperation(input, messageWriter);
         var update = new UpdateOperation(input, messageWriter);
-        var select = new SelectOperation(input, messageWriter);
+        var select = new SelectOperation();
 
         while(isRunning) {
             String userInput = input.nextLine();
