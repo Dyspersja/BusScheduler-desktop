@@ -1,5 +1,10 @@
 package com.dyspersja.console;
 
+import com.dyspersja.console.operations.DeleteOperation;
+import com.dyspersja.console.operations.InsertOperation;
+import com.dyspersja.console.operations.SelectOperation;
+import com.dyspersja.console.operations.UpdateOperation;
+
 import java.util.Scanner;
 
 public class ConsoleInputHandler {
@@ -21,6 +26,11 @@ public class ConsoleInputHandler {
     private void start() {
         boolean isRunning = true;
 
+        var insert = new InsertOperation(input);
+        var delete = new DeleteOperation(input);
+        var update = new UpdateOperation(input);
+        var select = new SelectOperation(input);
+
         while(isRunning) {
             String userInput = input.nextLine();
 
@@ -35,28 +45,12 @@ public class ConsoleInputHandler {
                     isRunning = false;
                 }
 
-                case INSERT -> goToInsertOperation();
-                case DELETE -> goToDeleteOperation();
-                case UPDATE -> goToUpdateOperation();
-                case SELECT -> goToSelectOperation();
+                case INSERT -> insert.start();
+                case DELETE -> delete.start();
+                case UPDATE -> update.start();
+                case SELECT -> select.start();
             }
         }
         input.close();
-    }
-
-    private void goToInsertOperation() {
-
-    }
-
-    private void goToDeleteOperation() {
-
-    }
-
-    private void goToUpdateOperation() {
-
-    }
-
-    private void goToSelectOperation() {
-
     }
 }
