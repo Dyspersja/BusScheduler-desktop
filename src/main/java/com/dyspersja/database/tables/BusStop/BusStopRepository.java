@@ -105,11 +105,11 @@ public class BusStopRepository implements TableRepository<BusStopEntity> {
 
     @Override
     public void update(BusStopEntity updatedEntity) throws SQLException {
-        final String updateQuery = "UPDATE bus_stops SET ? WHERE id = ?";
+        final String updateQuery = String.format("UPDATE bus_stops SET %s WHERE id = ?",
+                generateUpdateQuery(updatedEntity));
 
         try(PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-            statement.setString(1, generateUpdateQuery(updatedEntity));
-            statement.setInt(2, updatedEntity.getId());
+            statement.setInt(1, updatedEntity.getId());
 
             statement.executeUpdate();
         }
@@ -122,17 +122,19 @@ public class BusStopRepository implements TableRepository<BusStopEntity> {
         if(existingEntity.getNumber() != updatedEntity.getNumber())
             updatedFields.append(String.format("number = %d, ", updatedEntity.getNumber()));
 
-        if(existingEntity.getCity().equals(updatedEntity.getCity()))
-            updatedFields.append(String.format("city = %s, ", updatedEntity.getCity()));
+        if(!existingEntity.getCity().equals(updatedEntity.getCity()))
+            updatedFields.append(String.format("city = '%s', ", updatedEntity.getCity()));
 
-        if(existingEntity.getStreet().equals(updatedEntity.getStreet()))
-            updatedFields.append(String.format("street = %s, ", updatedEntity.getStreet()));
+        if(!existingEntity.getStreet().equals(updatedEntity.getStreet()))
+            updatedFields.append(String.format("street = '%s', ", updatedEntity.getStreet()));
 
         if(existingEntity.getLatitude() != updatedEntity.getLatitude())
-            updatedFields.append(String.format("latitude = %.6f, ", updatedEntity.getLatitude()));
+            updatedFields.append(String.format("latitude = %.6f",
+                    updatedEntity.getLatitude()).replace(",", ".")).append(", ");
 
         if(existingEntity.getLongitude() != updatedEntity.getLongitude())
-            updatedFields.append(String.format("longitude = %.6f, ", updatedEntity.getLongitude()));
+            updatedFields.append(String.format("longitude = %.6f",
+                    updatedEntity.getLongitude()).replace(",",".")).append(", ");
 
         if (updatedFields.isEmpty()) return null;
 

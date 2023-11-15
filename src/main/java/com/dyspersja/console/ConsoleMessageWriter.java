@@ -37,6 +37,14 @@ public class ConsoleMessageWriter {
                 to cancel and return to the previous screen""");
     }
 
+    public void printInitialUpdateOperationMessage() {
+        System.out.println("""
+                Welcome to Update Mode!
+                
+                enter bus stop id to update or type 'back'
+                to cancel and return to the previous screen""");
+    }
+
     public void printInvalidCommandMessage(String userInput) {
         System.out.println("Invalid command: " + userInput);
         System.out.println("Use the 'help' command to see available commands");
