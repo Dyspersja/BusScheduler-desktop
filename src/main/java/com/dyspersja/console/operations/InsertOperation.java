@@ -1,6 +1,5 @@
 package com.dyspersja.console.operations;
 
-import com.dyspersja.console.ConsoleMessageWriter;
 import com.dyspersja.database.tables.BusStop.BusStopEntity;
 import com.dyspersja.database.tables.BusStop.BusStopService;
 
@@ -52,7 +51,7 @@ public class InsertOperation {
 
         while (!input.hasNextDouble()) {
             input.nextLine();
-            System.out.println("Invalid input. Please enter a valid number.");
+            System.out.println("Invalid input. Please enter a valid number. (use commas ',' instead of periods '.')");
         }
         double number = input.nextDouble();
         input.nextLine();
