@@ -18,8 +18,7 @@ public class BusStopService implements TableService<BusStopEntity> {
     @Override
     public void deleteById(int id) {
         try {
-            if (repository.existsById(id)) repository.deleteById(id);
-            else System.out.printf("\nbus_stop with id: '%d' does not exist", id);
+            repository.deleteById(id);
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());
             System.out.println("SQLState: " + e.getSQLState());
