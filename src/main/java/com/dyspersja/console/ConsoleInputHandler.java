@@ -21,6 +21,7 @@ public class ConsoleInputHandler {
         messageWriter.printWelcomeMessage();
 
         start();
+        close();
     }
 
     private void start() {
@@ -51,6 +52,9 @@ public class ConsoleInputHandler {
                 case SELECT -> select.start();
             }
         }
+    }
+
+    private void close() {
         input.close();
     }
 }
