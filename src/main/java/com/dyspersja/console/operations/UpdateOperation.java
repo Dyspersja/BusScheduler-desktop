@@ -5,7 +5,6 @@ import com.dyspersja.database.tables.BusStop.BusStopColumns;
 import com.dyspersja.database.tables.BusStop.BusStopEntity;
 import com.dyspersja.database.tables.BusStop.BusStopService;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class UpdateOperation {

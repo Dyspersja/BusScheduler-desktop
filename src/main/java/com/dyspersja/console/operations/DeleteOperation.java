@@ -1,10 +1,8 @@
 package com.dyspersja.console.operations;
 
 import com.dyspersja.console.ConsoleMessageWriter;
-import com.dyspersja.database.tables.BusStop.BusStopEntity;
 import com.dyspersja.database.tables.BusStop.BusStopService;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class DeleteOperation {
