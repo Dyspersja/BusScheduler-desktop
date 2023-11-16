@@ -4,6 +4,7 @@ import com.dyspersja.console.operations.DeleteOperation;
 import com.dyspersja.console.operations.InsertOperation;
 import com.dyspersja.console.operations.SelectOperation;
 import com.dyspersja.console.operations.UpdateOperation;
+import com.dyspersja.database.DatabaseConnection;
 
 import java.util.Scanner;
 
@@ -36,9 +37,10 @@ public class ConsoleInputHandler {
             String userInput = input.nextLine();
 
             switch(parser.parseUserInput(userInput)) {
-                case INVALID_COMMAND -> printInvalidCommandMessage(userInput);
+                case INVALID_COMMAND ->
+                        messageWriter.printInvalidCommandMessage(userInput);
 
-                case HELP -> printHelpMessage();
+                case HELP -> messageWriter.printHelpMessage();
                 case EXIT -> exit();
 
                 case INSERT -> insert.start();
@@ -49,18 +51,12 @@ public class ConsoleInputHandler {
         }
     }
 
-    private void printInvalidCommandMessage(String userInput) {
-        messageWriter.printInvalidCommandMessage(userInput);
-    }
-
-    private void printHelpMessage() {
-        messageWriter.printHelpMessage();
-    }
-
     private void exit() {
-        messageWriter.printExitMessage();
         isRunning = false;
 
+        DatabaseConnection.getInstance().closeConnection();
         input.close();
+
+        messageWriter.printExitMessage();
     }
 }
