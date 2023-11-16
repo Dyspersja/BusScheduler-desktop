@@ -105,8 +105,14 @@ public class BusStopRepository implements TableRepository<BusStopEntity> {
 
     @Override
     public void update(BusStopEntity updatedEntity) throws SQLException {
-        final String updateQuery = String.format("UPDATE bus_stops SET %s WHERE id = ?",
-                generateUpdateQuery(updatedEntity));
+        String updateFields = generateUpdateQuery(updatedEntity);
+        if (updateFields == null) {
+            System.out.println("Nothing to update");
+            return;
+        }
+
+        String updateQuery = String.format("UPDATE bus_stops SET %s WHERE id = ?",
+                updateFields);
 
         try(PreparedStatement statement = connection.prepareStatement(updateQuery)) {
             statement.setInt(1, updatedEntity.getId());

@@ -43,6 +43,8 @@ public class UpdateOperation {
             busStop.setLongitude(getDouble("Provide bus stop longitude:"));
 
         service.update(busStop);
+
+        System.out.println("Going back to main mode");
     }
 
     public BusStopEntity getBusStopToUpdate() {
