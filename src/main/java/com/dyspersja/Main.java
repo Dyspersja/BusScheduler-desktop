@@ -2,7 +2,7 @@ package com.dyspersja;
 
 import com.dyspersja.database.DatabaseConnection;
 import com.dyspersja.properties.PropertiesLoader;
-import com.dyspersja.window.components.MainFrame;
+import com.dyspersja.window.WindowController;
 
 public class Main {
     public static void main( String[] args ) {
@@ -14,7 +14,7 @@ public class Main {
         //var inputHandler = new ConsoleInputHandler();
         //inputHandler.initialize();
 
-        var window = new MainFrame();
-        window.setVisible(true);
+        var window = new WindowController();
+        window.initialize();
     }
 }
