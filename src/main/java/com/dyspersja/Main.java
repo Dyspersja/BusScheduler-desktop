@@ -11,7 +11,7 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
                 DatabaseConnection.getInstance().closeConnection()));
 
-        var inputHandler = new ConsoleInputHandler();
-        inputHandler.initialize();
+        //var inputHandler = new ConsoleInputHandler();
+        //inputHandler.initialize();
     }
 }
