@@ -3,6 +3,7 @@ package com.dyspersja;
 import com.dyspersja.console.ConsoleInputHandler;
 import com.dyspersja.database.DatabaseConnection;
 import com.dyspersja.properties.PropertiesLoader;
+import com.dyspersja.window.MainFrame;
 
 public class Main {
     public static void main( String[] args ) {
@@ -13,5 +14,8 @@ public class Main {
 
         //var inputHandler = new ConsoleInputHandler();
         //inputHandler.initialize();
+
+        var window = new MainFrame();
+        window.setVisible(true);
     }
 }
