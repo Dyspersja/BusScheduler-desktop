@@ -1,4 +1,4 @@
-package com.dyspersja.window;
+package com.dyspersja.window.components;
 
 import javax.swing.*;
 import java.awt.*;
