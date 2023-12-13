@@ -2,6 +2,7 @@ package com.dyspersja.window.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class LeftPanel extends JPanel {
 
@@ -25,5 +26,17 @@ public class LeftPanel extends JPanel {
         add(this.button1);
         add(this.button2);
         add(this.button3);
+    }
+
+    public void addButton1ActionListener(ActionListener l) {
+        this.button1.addActionListener(l);
+    }
+
+    public void addButton2ActionListener(ActionListener l) {
+        this.button2.addActionListener(l);
+    }
+
+    public void addButton3ActionListener(ActionListener l) {
+        this.button3.addActionListener(l);
     }
 }

@@ -12,6 +12,7 @@ public class MainFrame extends JFrame {
     private static MainFrame instance;
 
     private final MainMenuBar menuBar;
+    private final MainPanel mainPanel;
     private final LeftPanel leftPanel;
 
     public MainFrame() {
@@ -22,8 +23,19 @@ public class MainFrame extends JFrame {
         this.menuBar = new MainMenuBar();
         setJMenuBar(menuBar);
 
+        this.mainPanel = new MainPanel();
+        add(mainPanel, BorderLayout.CENTER);
+
         this.leftPanel = new LeftPanel();
-        add(leftPanel,BorderLayout.WEST);
+
+        this.leftPanel.addButton1ActionListener(l ->
+            this.mainPanel.showScene("Scene 1"));
+        this.leftPanel.addButton2ActionListener(l ->
+            this.mainPanel.showScene("Scene 2"));
+        this.leftPanel.addButton3ActionListener(l ->
+            this.mainPanel.showScene("Scene 3"));
+
+        add(leftPanel, BorderLayout.WEST);
 
         instance = this;
     }
