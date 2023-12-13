@@ -8,18 +8,17 @@ import java.awt.event.KeyEvent;
 
 public class HelpMenu extends JMenu {
 
-    private JMenuItem aboutMenuItem;
+    private final JMenuItem aboutMenuItem;
 
     public HelpMenu() {
         setText("Help");
         setMnemonic(KeyEvent.VK_H);
 
+        this.aboutMenuItem = new JMenuItem("About");
         initializeAboutMenuItem();
     }
 
     private void initializeAboutMenuItem() {
-        aboutMenuItem = new JMenuItem("About");
-
         aboutMenuItem.addActionListener(l -> {
             AboutDialog aboutDialog = new AboutDialog(MainFrame.getInstance());
             aboutDialog.setVisible(true);
