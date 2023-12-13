@@ -1,8 +1,10 @@
 package com.dyspersja.window.components.menu;
 
+import com.dyspersja.window.SceneChangeListener;
+
 import javax.swing.*;
 
-public class MainMenuBar extends JMenuBar {
+public class MainMenuBar extends JMenuBar implements SceneChangeListener {
 
     private final FileMenu fileMenu;
     private final EditMenu editMenu;
@@ -19,5 +21,10 @@ public class MainMenuBar extends JMenuBar {
         add(editMenu);
         add(viewMenu);
         add(helpMenu);
+    }
+
+    @Override
+    public void onSceneChange(String sceneName) {
+        // do nothing
     }
 }

@@ -27,14 +27,8 @@ public class MainFrame extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         this.leftPanel = new LeftPanel();
-
-        this.leftPanel.addButton1ActionListener(l ->
-            this.mainPanel.showScene("Scene 1"));
-        this.leftPanel.addButton2ActionListener(l ->
-            this.mainPanel.showScene("Scene 2"));
-        this.leftPanel.addButton3ActionListener(l ->
-            this.mainPanel.showScene("Scene 3"));
-
+        leftPanel.addObserver(mainPanel);
+        leftPanel.addObserver(menuBar);
         add(leftPanel, BorderLayout.WEST);
 
         instance = this;

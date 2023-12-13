@@ -1,9 +1,11 @@
 package com.dyspersja.window.components;
 
+import com.dyspersja.window.SceneChangeListener;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends JPanel implements SceneChangeListener {
 
     private final CardLayout cardLayout;
 
@@ -22,7 +24,12 @@ public class MainPanel extends JPanel {
         return scenePanel;
     }
 
-    public void showScene(String sceneName) {
+    private void showScene(String sceneName) {
         cardLayout.show(this, sceneName);
+    }
+
+    @Override
+    public void onSceneChange(String sceneName) {
+        showScene(sceneName);
     }
 }
