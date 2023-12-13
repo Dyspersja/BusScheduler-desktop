@@ -8,18 +8,23 @@ import java.awt.event.KeyEvent;
 
 public class HelpMenu extends JMenu {
 
-    private final JMenuItem aboutMenuItem;
+    private JMenuItem aboutMenuItem;
 
     public HelpMenu() {
+        setText("Help");
+        setMnemonic(KeyEvent.VK_H);
+
+        initializeAboutMenuItem();
+    }
+
+    private void initializeAboutMenuItem() {
         aboutMenuItem = new JMenuItem("About");
-        add(aboutMenuItem);
 
         aboutMenuItem.addActionListener(l -> {
             AboutDialog aboutDialog = new AboutDialog(MainFrame.getInstance());
             aboutDialog.setVisible(true);
         });
 
-        setText("Help");
-        setMnemonic(KeyEvent.VK_H);
+        add(aboutMenuItem);
     }
 }
