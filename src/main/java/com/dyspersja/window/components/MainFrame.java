@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
     private static MainFrame instance;
 
     private final MainMenuBar menuBar;
-    private final MainPanel mainPanel;
+    private final CenterPanel centerPanel;
     private final LeftPanel leftPanel;
 
     public MainFrame() {
@@ -23,11 +23,11 @@ public class MainFrame extends JFrame {
         this.menuBar = new MainMenuBar();
         setJMenuBar(menuBar);
 
-        this.mainPanel = new MainPanel();
-        add(mainPanel, BorderLayout.CENTER);
+        this.centerPanel = new CenterPanel();
+        add(centerPanel, BorderLayout.CENTER);
 
         this.leftPanel = new LeftPanel();
-        leftPanel.addObserver(mainPanel);
+        leftPanel.addObserver(centerPanel);
         leftPanel.addObserver(menuBar);
         add(leftPanel, BorderLayout.WEST);
 

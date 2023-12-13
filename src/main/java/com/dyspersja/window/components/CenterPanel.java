@@ -6,11 +6,11 @@ import com.dyspersja.window.SceneChangeListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel extends JPanel implements SceneChangeListener {
+public class CenterPanel extends JPanel implements SceneChangeListener {
 
     private final CardLayout cardLayout;
 
-    public MainPanel() {
+    public CenterPanel() {
         this.cardLayout = new CardLayout();
         setLayout(cardLayout);
 

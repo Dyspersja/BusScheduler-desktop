@@ -19,7 +19,7 @@ public class HelpMenu extends JMenu {
     }
 
     private void initializeAboutMenuItem() {
-        aboutMenuItem.addActionListener(l -> {
+        aboutMenuItem.addActionListener(e -> {
             AboutDialog aboutDialog = new AboutDialog(MainFrame.getInstance());
             aboutDialog.setVisible(true);
         });
