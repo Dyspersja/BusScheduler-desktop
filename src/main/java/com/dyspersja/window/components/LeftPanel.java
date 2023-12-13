@@ -1,5 +1,6 @@
 package com.dyspersja.window.components;
 
+import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeListener;
 
 import javax.swing.*;
@@ -36,18 +37,18 @@ public class LeftPanel extends JPanel {
     }
 
     private void addButtonListeners() {
-        button1.addActionListener(e -> notifyObservers("Scene 1"));
-        button2.addActionListener(e -> notifyObservers("Scene 2"));
-        button3.addActionListener(e -> notifyObservers("Scene 3"));
+        button1.addActionListener(e -> notifyObservers(Scene.SCENE_1));
+        button2.addActionListener(e -> notifyObservers(Scene.SCENE_2));
+        button3.addActionListener(e -> notifyObservers(Scene.SCENE_3));
     }
 
     public void addObserver(SceneChangeListener observer) {
         observers.add(observer);
     }
 
-    private void notifyObservers(String sceneName) {
+    private void notifyObservers(Scene scene) {
         for (SceneChangeListener observer : observers) {
-            observer.onSceneChange(sceneName);
+            observer.onSceneChange(scene);
         }
     }
 }

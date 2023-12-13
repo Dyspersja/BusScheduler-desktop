@@ -1,5 +1,6 @@
 package com.dyspersja.window.components;
 
+import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeListener;
 
 import javax.swing.*;
@@ -13,9 +14,9 @@ public class MainPanel extends JPanel implements SceneChangeListener {
         this.cardLayout = new CardLayout();
         setLayout(cardLayout);
 
-        add(createScenePanel("Scene 1 Content"), "Scene 1");
-        add(createScenePanel("Scene 2 Content"), "Scene 2");
-        add(createScenePanel("Scene 3 Content"), "Scene 3");
+        add(createScenePanel("Scene 1 Content"), Scene.SCENE_1.toString());
+        add(createScenePanel("Scene 2 Content"), Scene.SCENE_2.toString());
+        add(createScenePanel("Scene 3 Content"), Scene.SCENE_3.toString());
     }
 
     private JPanel createScenePanel(String content) {
@@ -29,7 +30,7 @@ public class MainPanel extends JPanel implements SceneChangeListener {
     }
 
     @Override
-    public void onSceneChange(String sceneName) {
-        showScene(sceneName);
+    public void onSceneChange(Scene scene) {
+        showScene(scene.toString());
     }
 }
