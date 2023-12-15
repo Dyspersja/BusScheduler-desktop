@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 
 public class ViewMenu extends JMenu {
 
+    private Rectangle windowBounds;
+
     private final JMenuItem fullScreenMenuItem;
 
     public ViewMenu() {
@@ -25,18 +27,17 @@ public class ViewMenu extends JMenu {
         fullScreenMenuItem.addActionListener(e -> {
             JFrame frame = MainFrame.getInstance();
 
-            GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
             if (!frame.isUndecorated()) {
+                windowBounds = frame.getBounds();
                 frame.dispose();
                 frame.setUndecorated(true);
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.setVisible(true);
-                device.setFullScreenWindow(frame);
             } else {
-                device.setFullScreenWindow(null);
                 frame.dispose();
                 frame.setUndecorated(false);
                 frame.setVisible(true);
+                frame.setBounds(windowBounds);
             }
         });
 
