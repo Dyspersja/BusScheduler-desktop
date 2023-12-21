@@ -1,20 +1,18 @@
 package com.dyspersja.window.components;
 
 import com.dyspersja.window.Scene;
-import com.dyspersja.window.SceneChangeListener;
+import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LeftPanel extends JPanel {
+
+    private final SceneChangeService sceneChangeService;
 
     private final JButton button1;
     private final JButton button2;
     private final JButton button3;
-
-    private final List<SceneChangeListener> observers = new ArrayList<>();
 
     public LeftPanel() {
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, 5));
@@ -34,21 +32,13 @@ public class LeftPanel extends JPanel {
         add(this.button3);
 
         addButtonListeners();
+
+        this.sceneChangeService = SceneChangeService.getInstance();
     }
 
     private void addButtonListeners() {
-        button1.addActionListener(e -> notifyObservers(Scene.SCENE_1));
-        button2.addActionListener(e -> notifyObservers(Scene.SCENE_2));
-        button3.addActionListener(e -> notifyObservers(Scene.SCENE_3));
-    }
-
-    public void addObserver(SceneChangeListener observer) {
-        observers.add(observer);
-    }
-
-    private void notifyObservers(Scene scene) {
-        for (SceneChangeListener observer : observers) {
-            observer.onSceneChange(scene);
-        }
+        button1.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_1));
+        button2.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_2));
+        button3.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_3));
     }
 }

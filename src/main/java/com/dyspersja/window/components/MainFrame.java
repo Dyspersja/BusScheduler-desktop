@@ -1,5 +1,6 @@
 package com.dyspersja.window.components;
 
+import com.dyspersja.window.SceneChangeService;
 import com.dyspersja.window.components.menu.MainMenuBar;
 import lombok.Getter;
 
@@ -31,9 +32,11 @@ public class MainFrame extends JFrame {
         add(statusBar,BorderLayout.SOUTH);
 
         this.leftPanel = new LeftPanel();
-        leftPanel.addObserver(centerPanel);
-        leftPanel.addObserver(menuBar);
         add(leftPanel, BorderLayout.WEST);
+
+        SceneChangeService sceneChangeService = SceneChangeService.getInstance();
+        sceneChangeService.addObserver(centerPanel);
+        sceneChangeService.addObserver(menuBar);
 
         instance = this;
     }
