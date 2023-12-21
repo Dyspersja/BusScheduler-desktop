@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
     private final MainMenuBar menuBar;
     private final CenterPanel centerPanel;
     private final LeftPanel leftPanel;
+    private final StatusBar statusBar;
 
     public MainFrame() {
         setLayout(new BorderLayout());
@@ -25,6 +26,9 @@ public class MainFrame extends JFrame {
 
         this.centerPanel = new CenterPanel();
         add(centerPanel, BorderLayout.CENTER);
+
+        this.statusBar = new StatusBar();
+        add(statusBar,BorderLayout.SOUTH);
 
         this.leftPanel = new LeftPanel();
         leftPanel.addObserver(centerPanel);
