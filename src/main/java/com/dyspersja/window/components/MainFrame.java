@@ -37,6 +37,7 @@ public class MainFrame extends JFrame {
         SceneChangeService sceneChangeService = SceneChangeService.getInstance();
         sceneChangeService.addObserver(centerPanel);
         sceneChangeService.addObserver(menuBar);
+        sceneChangeService.addObserver(statusBar);
 
         instance = this;
     }
