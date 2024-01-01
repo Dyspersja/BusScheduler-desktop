@@ -1,5 +1,6 @@
-package com.dyspersja.database.model;
+package com.dyspersja.database.tables.citydistrict;
 
+import com.dyspersja.database.tables.ticketzone.TicketZone;
 import jakarta.persistence.*;
 import lombok.*;
 

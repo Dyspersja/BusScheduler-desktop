@@ -1,5 +1,6 @@
-package com.dyspersja.database.model;
+package com.dyspersja.database.tables.busstop;
 
+import com.dyspersja.database.tables.citydistrict.CityDistrict;
 import jakarta.persistence.*;
 import lombok.*;
 

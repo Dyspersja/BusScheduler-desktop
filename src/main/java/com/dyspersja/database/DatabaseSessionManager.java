@@ -1,6 +1,11 @@
 package com.dyspersja.database;
 
-import com.dyspersja.database.model.*;
+import com.dyspersja.database.tables.busline.BusLine;
+import com.dyspersja.database.tables.busstop.BusStop;
+import com.dyspersja.database.tables.citydistrict.CityDistrict;
+import com.dyspersja.database.tables.linestop.LineStop;
+import com.dyspersja.database.tables.route.Route;
+import com.dyspersja.database.tables.ticketzone.TicketZone;
 import com.dyspersja.properties.PropertiesLoader;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

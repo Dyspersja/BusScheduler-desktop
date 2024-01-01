@@ -1,4 +1,4 @@
-package com.dyspersja.database.model;
+package com.dyspersja.database.tables.ticketzone;
 
 import jakarta.persistence.*;
 import lombok.*;
