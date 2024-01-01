@@ -1,4 +1,4 @@
-package com.dyspersja.model;
+package com.dyspersja.database.model;
 
 import jakarta.persistence.*;
 import lombok.*;

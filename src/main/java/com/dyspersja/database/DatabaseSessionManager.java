@@ -1,6 +1,6 @@
 package com.dyspersja.database;
 
-import com.dyspersja.model.*;
+import com.dyspersja.database.model.*;
 import com.dyspersja.properties.PropertiesLoader;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
