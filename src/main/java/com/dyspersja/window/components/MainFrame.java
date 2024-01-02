@@ -36,6 +36,6 @@ public class MainFrame extends JFrame {
         add(leftPanel, BorderLayout.WEST);
 
         instance = this;
-        SceneChangeService.getInstance().changeScene(Scene.SCENE_1);
+        SceneChangeService.getInstance().changeScene(Scene.values()[0]);
     }
 }
