@@ -1,14 +1,13 @@
 package com.dyspersja.window.components;
 
 import com.dyspersja.window.Scene;
+import com.dyspersja.window.SceneChangeListener;
 import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LeftPanel extends JPanel {
-
-    private final SceneChangeService sceneChangeService;
+public class LeftPanel extends JPanel implements SceneChangeListener {
 
     private final JButton button1;
     private final JButton button2;
@@ -32,13 +31,25 @@ public class LeftPanel extends JPanel {
         add(this.button3);
 
         addButtonListeners();
-
-        this.sceneChangeService = SceneChangeService.getInstance();
+        SceneChangeService.getInstance().addObserver(this);
     }
 
     private void addButtonListeners() {
+        SceneChangeService sceneChangeService = SceneChangeService.getInstance();
         button1.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_1));
         button2.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_2));
         button3.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_3));
+    }
+
+    @Override
+    public void onSceneChange(Scene scene) {
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        switch (scene) {
+            case SCENE_1 -> button1.setEnabled(false);
+            case SCENE_2 -> button2.setEnabled(false);
+            case SCENE_3 -> button3.setEnabled(false);
+        }
     }
 }
