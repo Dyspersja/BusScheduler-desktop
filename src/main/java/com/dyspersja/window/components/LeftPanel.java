@@ -6,50 +6,36 @@ import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LeftPanel extends JPanel implements SceneChangeListener {
 
-    private final JButton button1;
-    private final JButton button2;
-    private final JButton button3;
+    private final Map<JButton, Scene> buttons = new HashMap<>();
 
     public LeftPanel() {
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, 5));
         setPreferredSize(new Dimension(200, Integer.MAX_VALUE));
         setBackground(Color.LIGHT_GRAY);
 
-        this.button1 = new JButton("Scene 1");
-        this.button2 = new JButton("Scene 2");
-        this.button3 = new JButton("Scene 3");
+        SceneChangeService sceneChangeService = SceneChangeService.getInstance();
 
         Dimension buttonSize = new Dimension(180, 30);
-        this.button1.setPreferredSize(buttonSize);
-        this.button2.setPreferredSize(buttonSize);
-        this.button3.setPreferredSize(buttonSize);
-        add(this.button1);
-        add(this.button2);
-        add(this.button3);
+        for (Scene scene : Scene.values()) {
+            JButton button = new JButton(scene.toString());
+            button.setPreferredSize(buttonSize);
+            buttons.put(button, scene);
 
-        addButtonListeners();
-        SceneChangeService.getInstance().addObserver(this);
-    }
+            button.addActionListener(e -> sceneChangeService.changeScene(scene));
 
-    private void addButtonListeners() {
-        SceneChangeService sceneChangeService = SceneChangeService.getInstance();
-        button1.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_1));
-        button2.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_2));
-        button3.addActionListener(e -> sceneChangeService.changeScene(Scene.SCENE_3));
+            add(button);
+        }
+
+        sceneChangeService.addObserver(this);
     }
 
     @Override
     public void onSceneChange(Scene scene) {
-        button1.setEnabled(true);
-        button2.setEnabled(true);
-        button3.setEnabled(true);
-        switch (scene) {
-            case SCENE_1 -> button1.setEnabled(false);
-            case SCENE_2 -> button2.setEnabled(false);
-            case SCENE_3 -> button3.setEnabled(false);
-        }
+        buttons.forEach((button, buttonScene) -> button.setEnabled(buttonScene != scene));
     }
 }
