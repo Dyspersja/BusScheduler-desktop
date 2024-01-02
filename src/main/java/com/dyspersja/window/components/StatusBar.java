@@ -2,6 +2,7 @@ package com.dyspersja.window.components;
 
 import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeListener;
+import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +27,8 @@ public class StatusBar extends Box implements SceneChangeListener {
         add(Box.createHorizontalGlue());
         JLabel label1 = new JLabel("Test2");
         add(label1);
+
+        SceneChangeService.getInstance().addObserver(this);
     }
 
     @Override
