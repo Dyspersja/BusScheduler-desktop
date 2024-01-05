@@ -1,10 +1,7 @@
 package com.dyspersja.window.components.scenes;
 
 import com.dyspersja.database.tables.ticketzone.TicketZoneService;
-import com.dyspersja.window.RowSelectionChangeService;
-import com.dyspersja.window.Scene;
-import com.dyspersja.window.SceneChangeListener;
-import com.dyspersja.window.SceneChangeService;
+import com.dyspersja.window.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -70,10 +67,13 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
     private JPopupMenu createContextMenu() {
         JPopupMenu contextMenu = new JPopupMenu();
 
-        JMenuItem editMenuItem = new JMenuItem("Edit");
+        JMenuItem updateMenuItem = new JMenuItem("Update");
         JMenuItem deleteMenuItem = new JMenuItem("Delete");
 
-        contextMenu.add(editMenuItem);
+        updateMenuItem.addActionListener(new UpdateActionListener());
+        deleteMenuItem.addActionListener(new DeleteActionListener());
+
+        contextMenu.add(updateMenuItem);
         contextMenu.add(deleteMenuItem);
 
         return contextMenu;
@@ -90,7 +90,6 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                     if(idValue instanceof Long id) {
                         RowSelectionChangeService.getInstance().changeSelectedRowId(id);
                     }
-//                    JOptionPane.showMessageDialog(this, "Selected ID: " + idValue);
                 }
             }
         });

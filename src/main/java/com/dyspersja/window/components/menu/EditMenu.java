@@ -1,7 +1,6 @@
 package com.dyspersja.window.components.menu;
 
-import com.dyspersja.window.RowSelectionChangeListener;
-import com.dyspersja.window.RowSelectionChangeService;
+import com.dyspersja.window.*;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
@@ -28,6 +27,7 @@ public class EditMenu extends JMenu implements RowSelectionChangeListener {
     }
 
     private void initializeAddMenuItem() {
+        addMenuItem.addActionListener(new AddActionListener());
         addMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
 
@@ -35,6 +35,7 @@ public class EditMenu extends JMenu implements RowSelectionChangeListener {
     }
 
     private void initializeDeleteMenuItem() {
+        deleteMenuItem.addActionListener(new DeleteActionListener());
         deleteMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_DELETE, 0));
 
@@ -42,6 +43,7 @@ public class EditMenu extends JMenu implements RowSelectionChangeListener {
     }
 
     private void initializeUpdateMenuItem() {
+        updateMenuItem.addActionListener(new UpdateActionListener());
         updateMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK));
 
