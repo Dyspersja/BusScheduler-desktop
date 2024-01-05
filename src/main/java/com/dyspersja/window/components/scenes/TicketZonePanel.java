@@ -45,6 +45,7 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                     int row = table.rowAtPoint(e.getPoint());
                     if (row != -1) {
                         table.setRowSelectionInterval(row, row);
+                        showContextMenu(e);
                     }
                 }
             }
@@ -58,6 +59,23 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
         add(scrollPane,BorderLayout.CENTER);
 
         SceneChangeService.getInstance().addObserver(this);
+    }
+
+    private void showContextMenu(MouseEvent e) {
+        JPopupMenu contextMenu = createContextMenu();
+        contextMenu.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private JPopupMenu createContextMenu() {
+        JPopupMenu contextMenu = new JPopupMenu();
+
+        JMenuItem editMenuItem = new JMenuItem("Edit");
+        JMenuItem deleteMenuItem = new JMenuItem("Delete");
+
+        contextMenu.add(editMenuItem);
+        contextMenu.add(deleteMenuItem);
+
+        return contextMenu;
     }
 
     private void initializeSelectionModel() {
