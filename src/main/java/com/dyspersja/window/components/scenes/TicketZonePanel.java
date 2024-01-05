@@ -8,7 +8,6 @@ import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.List;
 
 public class TicketZonePanel extends JScrollPane implements SceneChangeListener {
@@ -20,7 +19,12 @@ public class TicketZonePanel extends JScrollPane implements SceneChangeListener 
         table = new JTable();
         setViewportView(table);
 
-        model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         model.addColumn("ID");
         model.addColumn("Zone Name");
 
@@ -32,7 +36,6 @@ public class TicketZonePanel extends JScrollPane implements SceneChangeListener 
             if (!e.getValueIsAdjusting()) {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow != -1) {
-                    // Retrieve the value from the "ID" column
                     Object idValue = table.getValueAt(selectedRow, 0);
                     JOptionPane.showMessageDialog(this, "Selected ID: " + idValue);
                 }
