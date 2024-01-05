@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TicketZonePanel extends JPanel implements SceneChangeListener {
 
@@ -36,6 +38,18 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
         table.setRowSorter(sorter);
         table.setModel(model);
 
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int row = table.rowAtPoint(e.getPoint());
+                    if (row != -1) {
+                        table.setRowSelectionInterval(row, row);
+                    }
+                }
+            }
+        });
+
         initializeSelectionModel();
         initializeFilterPanel();
 
@@ -54,7 +68,7 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow != -1) {
                     Object idValue = table.getValueAt(selectedRow, 0);
-                    JOptionPane.showMessageDialog(this, "Selected ID: " + idValue);
+//                    JOptionPane.showMessageDialog(this, "Selected ID: " + idValue);
                 }
             }
         });
