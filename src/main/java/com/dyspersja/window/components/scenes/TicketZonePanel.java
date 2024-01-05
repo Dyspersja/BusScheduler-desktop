@@ -19,6 +19,8 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
     private final TableRowSorter<TableModel> sorter;
 
     public TicketZonePanel() {
+        setLayout(new BorderLayout());
+
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -34,6 +36,17 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
         table.setRowSorter(sorter);
         table.setModel(model);
 
+        initializeSelectionModel();
+        initializeFilterPanel();
+
+        scrollPane = new JScrollPane();
+        scrollPane.setViewportView(table);
+        add(scrollPane,BorderLayout.CENTER);
+
+        SceneChangeService.getInstance().addObserver(this);
+    }
+
+    private void initializeSelectionModel() {
         ListSelectionModel selectionModel = table.getSelectionModel();
         selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         selectionModel.addListSelectionListener(e -> {
@@ -45,22 +58,18 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                 }
             }
         });
+    }
 
-        setLayout(new BorderLayout());
-
+    private void initializeFilterPanel() {
         JPanel filterPanel = new JPanel(new BorderLayout());
         filterPanel.add(new JLabel("Filter: "),BorderLayout.WEST);
+
         JTextField filterTextField = new JTextField();
         filterTextField.addActionListener(e -> applyFilter(filterTextField.getText()));
         filterPanel.add(filterTextField,BorderLayout.CENTER);
+
         filterPanel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
         add(filterPanel, BorderLayout.NORTH);
-
-        scrollPane = new JScrollPane();
-        scrollPane.setViewportView(table);
-        add(scrollPane,BorderLayout.CENTER);
-
-        SceneChangeService.getInstance().addObserver(this);
     }
 
     private void applyFilter(String text) {
