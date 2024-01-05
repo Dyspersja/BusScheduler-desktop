@@ -1,5 +1,6 @@
 package com.dyspersja.window.components;
 
+import com.dyspersja.window.RowSelectionChangeService;
 import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeService;
 import com.dyspersja.window.components.menu.MainMenuBar;
@@ -38,5 +39,6 @@ public class MainFrame extends JFrame {
 
         instance = this;
         SceneChangeService.getInstance().changeScene(Scene.values()[0]);
+        RowSelectionChangeService.getInstance().changeSelectedRowId(null);
     }
 }

@@ -1,6 +1,7 @@
 package com.dyspersja.window.components.scenes;
 
 import com.dyspersja.database.tables.ticketzone.TicketZoneService;
+import com.dyspersja.window.RowSelectionChangeService;
 import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeListener;
 import com.dyspersja.window.SceneChangeService;
@@ -44,6 +45,10 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     int row = table.rowAtPoint(e.getPoint());
                     if (row != -1) {
+                        Object idValue = table.getValueAt(row, 0);
+                        if(idValue instanceof Long id) {
+                            RowSelectionChangeService.getInstance().changeSelectedRowId(id);
+                        }
                         table.setRowSelectionInterval(row, row);
                         showContextMenu(e);
                     }
@@ -86,6 +91,9 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow != -1) {
                     Object idValue = table.getValueAt(selectedRow, 0);
+                    if(idValue instanceof Long id) {
+                        RowSelectionChangeService.getInstance().changeSelectedRowId(id);
+                    }
 //                    JOptionPane.showMessageDialog(this, "Selected ID: " + idValue);
                 }
             }
