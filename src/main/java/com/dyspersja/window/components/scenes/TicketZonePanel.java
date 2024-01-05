@@ -4,6 +4,7 @@ import com.dyspersja.database.tables.ticketzone.TicketZoneService;
 import com.dyspersja.window.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +26,12 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
+            }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 0
+                        ? Long.class
+                        : super.getColumnClass(columnIndex);
             }
         };
         model.addColumn("ID");
@@ -51,6 +58,7 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
 
         initializeSelectionModel();
         initializeFilterPanel();
+        initializeCellRenderer();
 
         scrollPane = new JScrollPane();
         scrollPane.setViewportView(table);
@@ -105,6 +113,12 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
 
         filterPanel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
         add(filterPanel, BorderLayout.NORTH);
+    }
+
+    private void initializeCellRenderer() {
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.LEFT);
+        table.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
     }
 
     private void applyFilter(String text) {
