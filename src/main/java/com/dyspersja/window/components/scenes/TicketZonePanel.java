@@ -1,6 +1,5 @@
 package com.dyspersja.window.components.scenes;
 
-import com.dyspersja.database.tables.ticketzone.TicketZone;
 import com.dyspersja.database.tables.ticketzone.TicketZoneService;
 import com.dyspersja.window.Scene;
 import com.dyspersja.window.SceneChangeListener;
@@ -8,18 +7,18 @@ import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.util.List;
+import java.awt.*;
 
-public class TicketZonePanel extends JScrollPane implements SceneChangeListener {
+public class TicketZonePanel extends JPanel implements SceneChangeListener {
 
     private final JTable table;
+    private final JScrollPane scrollPane;
     private final DefaultTableModel model;
+    private final TableRowSorter<TableModel> sorter;
 
     public TicketZonePanel() {
-        table = new JTable();
-        setViewportView(table);
-
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -29,7 +28,10 @@ public class TicketZonePanel extends JScrollPane implements SceneChangeListener 
         model.addColumn("ID");
         model.addColumn("Zone Name");
 
-        table.setRowSorter(new TableRowSorter<>(model));
+        sorter = new TableRowSorter<>(model);
+
+        table = new JTable();
+        table.setRowSorter(sorter);
         table.setModel(model);
 
         ListSelectionModel selectionModel = table.getSelectionModel();
@@ -44,17 +46,31 @@ public class TicketZonePanel extends JScrollPane implements SceneChangeListener 
             }
         });
 
+        setLayout(new BorderLayout());
+
+        JPanel filterPanel = new JPanel(new BorderLayout());
+        filterPanel.add(new JLabel("Filter: "),BorderLayout.WEST);
+        JTextField filterTextField = new JTextField();
+        filterTextField.addActionListener(e -> applyFilter(filterTextField.getText()));
+        filterPanel.add(filterTextField,BorderLayout.CENTER);
+        filterPanel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
+        add(filterPanel, BorderLayout.NORTH);
+
+        scrollPane = new JScrollPane();
+        scrollPane.setViewportView(table);
+        add(scrollPane,BorderLayout.CENTER);
+
         SceneChangeService.getInstance().addObserver(this);
     }
 
-    private void loadData() {
-        TicketZoneService service = new TicketZoneService();
-        List<TicketZone> ticketZones = service.getAll();
+    private void applyFilter(String text) {
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    }
 
+    private void loadData() {
         model.setRowCount(0);
-        for (TicketZone ticketZone : ticketZones) {
-            model.addRow(new Object[]{ticketZone.getId(), ticketZone.getZoneName()});
-        }
+        new TicketZoneService().getAll().forEach(ticketZone ->
+                model.addRow(new Object[]{ticketZone.getId(), ticketZone.getZoneName()}));
     }
 
     @Override
