@@ -8,6 +8,7 @@ import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.util.List;
 
 public class TicketZonePanel extends JScrollPane implements SceneChangeListener {
@@ -28,6 +29,7 @@ public class TicketZonePanel extends JScrollPane implements SceneChangeListener 
         model.addColumn("ID");
         model.addColumn("Zone Name");
 
+        table.setRowSorter(new TableRowSorter<>(model));
         table.setModel(model);
 
         ListSelectionModel selectionModel = table.getSelectionModel();
