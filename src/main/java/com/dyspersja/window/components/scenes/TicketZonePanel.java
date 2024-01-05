@@ -45,10 +45,6 @@ public class TicketZonePanel extends JPanel implements SceneChangeListener {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     int row = table.rowAtPoint(e.getPoint());
                     if (row != -1) {
-                        Object idValue = table.getValueAt(row, 0);
-                        if(idValue instanceof Long id) {
-                            RowSelectionChangeService.getInstance().changeSelectedRowId(id);
-                        }
                         table.setRowSelectionInterval(row, row);
                         showContextMenu(e);
                     }
