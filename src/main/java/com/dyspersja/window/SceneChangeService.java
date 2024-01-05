@@ -30,6 +30,10 @@ public class SceneChangeService {
         notifyObservers(scene);
     }
 
+    public void reloadScene() {
+        changeScene(currentScene);
+    }
+
     public Scene getScene() {
         return this.currentScene;
     }

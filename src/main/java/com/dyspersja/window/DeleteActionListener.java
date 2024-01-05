@@ -6,6 +6,6 @@ import java.awt.event.ActionListener;
 public class DeleteActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        SceneChangeService.getInstance().changeScene(SceneChangeService.getInstance().getScene());
+        SceneChangeService.getInstance().reloadScene();
     }
 }
