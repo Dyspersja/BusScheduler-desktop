@@ -2,13 +2,16 @@ package com.dyspersja.window.components.scenes;
 
 import com.dyspersja.database.tables.ticketzone.TicketZone;
 import com.dyspersja.database.tables.ticketzone.TicketZoneService;
+import com.dyspersja.window.Scene;
+import com.dyspersja.window.SceneChangeListener;
+import com.dyspersja.window.SceneChangeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class TicketZonePanel extends JScrollPane {
+public class TicketZonePanel extends JScrollPane implements SceneChangeListener {
 
     private final JTable table;
     private final DefaultTableModel model;
@@ -20,8 +23,6 @@ public class TicketZonePanel extends JScrollPane {
         model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Zone Name");
-
-        loadData();
 
         table.setModel(model);
 
@@ -37,6 +38,8 @@ public class TicketZonePanel extends JScrollPane {
                 }
             }
         });
+
+        SceneChangeService.getInstance().addObserver(this);
     }
 
     private void loadData() {
@@ -47,5 +50,10 @@ public class TicketZonePanel extends JScrollPane {
         for (TicketZone ticketZone : ticketZones) {
             model.addRow(new Object[]{ticketZone.getId(), ticketZone.getZoneName()});
         }
+    }
+
+    @Override
+    public void onSceneChange(Scene scene) {
+        if (scene == Scene.TICKET_ZONES) loadData();
     }
 }
