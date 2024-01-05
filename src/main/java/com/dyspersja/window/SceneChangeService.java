@@ -30,6 +30,10 @@ public class SceneChangeService {
         notifyObservers(scene);
     }
 
+    public Scene getScene() {
+        return this.currentScene;
+    }
+
     private void notifyObservers(Scene scene) {
         for (SceneChangeListener observer : observers) {
             observer.onSceneChange(scene);
