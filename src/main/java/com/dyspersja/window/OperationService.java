@@ -12,6 +12,7 @@ public class OperationService {
     private static OperationService instance;
 
     private final List<OperationListener> observers = new ArrayList<>();
+    private boolean isListening = true;
 
     public static OperationService getInstance() {
         if (instance == null) {
@@ -29,8 +30,16 @@ public class OperationService {
     }
 
     private void notifyObservers(String description) {
-        for (OperationListener observer : observers) {
-            observer.onOperationPerformed(description);
+        if (isListening) {
+            observers.forEach(observer -> observer.onOperationPerformed(description));
         }
+    }
+
+    public void suppressChangeNotifications() {
+        this.isListening = false;
+    }
+
+    public void resumeChangeNotifications() {
+        this.isListening = true;
     }
 }

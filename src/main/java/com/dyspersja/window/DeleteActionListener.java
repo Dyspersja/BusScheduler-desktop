@@ -20,7 +20,15 @@ public class DeleteActionListener implements ActionListener {
                 JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
             new TicketZoneService().delete(id);
-            SceneChangeService.getInstance().reloadScene();
+            reloadScene();
         }
+    }
+
+    private void reloadScene() {
+        OperationService operationService = OperationService.getInstance();
+
+        operationService.suppressChangeNotifications();
+        SceneChangeService.getInstance().reloadScene();
+        operationService.resumeChangeNotifications();
     }
 }
