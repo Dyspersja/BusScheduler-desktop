@@ -31,7 +31,7 @@ public class SceneChangeService {
     }
 
     public void reloadScene() {
-        changeScene(currentScene);
+        notifyObservers(currentScene);
     }
 
     public Scene getScene() {
